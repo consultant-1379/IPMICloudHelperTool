@@ -1,0 +1,53 @@
+{
+  "_embedded": {
+    "item": [
+      {
+        "_embedded": {
+          "item": [
+            {
+              "item-type-name": "reference-to-bmc",
+              "state": "Applied",
+              "_links": {
+                "inherited-from": {
+                  "href": "https://localhost:9999/litp/rest/v1/infrastructure/systems/@@MODELID@@_system/bmc"
+                },
+                "self": {
+                  "href": "https://localhost:9999/litp/rest/v1/deployments/enm/clusters/services_cluster/nodes/@@MODELID@@/system/bmc"
+                }
+              },
+              "id": "bmc",
+              "properties": {
+                "ipaddress": "@@ILOADDRESS@@"
+              }
+            }
+          ]
+        },
+        "properties": {
+          "system_name": "@@MODELID@@"
+        },
+        "item-type-name": "reference-to-blade",
+        "state": "Applied",
+        "_links": {
+          "inherited-from": {
+            "href": "https://localhost:9999/litp/rest/v1/infrastructure/systems/@@MODELID@@_system"
+          },
+          "self": {
+            "href": "https://localhost:9999/litp/rest/v1/deployments/enm/clusters/services_cluster/nodes/@@MODELID@@/system"
+          }
+        },
+        "id": "system"
+      }
+    ]
+  },
+  "properties": {
+    "hostname": "@@HOSTNAME@@"
+  },
+  "item-type-name": "node",
+  "state": "Applied",
+  "_links": {
+    "self": {
+      "href": "https://localhost:9999/litp/rest/v1/deployments/enm/clusters/services_cluster/nodes/@@MODELID@@"
+    }
+  },
+  "id": "@@MODELID@@"
+}

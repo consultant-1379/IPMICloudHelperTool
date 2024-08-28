@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ericsson.nms.litp</groupId>
+    <artifactId>IPMICloudHelperTool</artifactId>
+    <packaging>rpm</packaging>
+    <name>[${project.parent.artifactId}] RPM module</name>
+    <description>Cloud IPMI adapter</description>
+
+    <parent>
+        <groupId>com.ericsson.nms.litp</groupId>
+        <artifactId>IPMICloudHelper</artifactId>
+        <version>1.0.19-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <publish_artifact>false</publish_artifact>
+        <com.ericsson.nms.litp.runats.skip>true</com.ericsson.nms.litp.runats.skip>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <inherited>true</inherited>
+                <configuration>
+                    <requires>
+                        <require>python &gt;= 2.6</require>
+                        <require>ERIClitpipmi_CXP9030612</require>
+                    </requires>
+                    <mappings>
+                        <mapping>
+                            <!-- /bin needs ugo+x to enable completion for all users -->
+                            <directory>${app.home}/bin</directory>
+                            <configuration>false</configuration>
+                            <filemode>755</filemode>
+                        </mapping>
+                        <mapping>
+                            <!-- Completion script -->
+                            <directory>${app.home}/bin</directory>
+                            <configuration>false</configuration>
+                            <directoryIncluded>false</directoryIncluded>
+                            <filemode>755</filemode>
+                            <sources>
+                                <source>
+                                    <location>../src/ipmitool.py</location>
+                                    <destination>ipmitool.cloud</destination>
+                                </source>
+                            </sources>
+                        </mapping>
+                    </mappings>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+    </dependencies>
+</project>
+
